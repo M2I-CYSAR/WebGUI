@@ -12,9 +12,8 @@ RUN npm run build --prod
 ### STAGE 2:RUN ###
 FROM nginx:latest AS run-env
 
-COPY --from=build-env /dist/src/app/dist/camera-webpage /usr/share/nginx/html
-COPY  nginx.conf  /etc/nginx/nginx.conf
-COPY  default.conf  /etc/nginx/conf.d/default.conf
+COPY --from=build-env /dist/src/app/dist/web /usr/share/nginx/html
+COPY  nginx.conf  /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /etc/nginx/cache
 
