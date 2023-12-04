@@ -1,8 +1,8 @@
 <div class="dashboard-container" style="height: 95vh; max-width: 100%; display: flex; flex-direction: column;">
     <div class="stream-container">
-        <img src="http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5002/?action=stream" id="Stream 0" class="stream">
-        <img src="http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5001/?action=stream" id="Stream 1" class="stream">
-        <img src="http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5002/?action=stream" id="Stream 2" class="stream">
+        <img [src]="streams[0]" (error)="errorStream(0)" id="Stream 0" class="stream">
+        <img [src]="streams[1]" (error)="errorStream(1)" id="Stream 1" class="stream">
+        <img [src]="streams[2]" (error)="errorStream(2)" id="Stream 2" class="stream">
     </div>
     <div class="feedback-container">
         <div class="canvas-container" style="justify-content: left;">

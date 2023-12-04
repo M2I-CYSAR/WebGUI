@@ -25,6 +25,12 @@ export class DashboardComponent implements AfterViewInit {
   arm = new Arm();
   ros = new RosConnection();
 
+  streams = [
+    "http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5000/?action=stream",
+    "http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5001/?action=stream",
+    "http://[2610:130:110:1525:47e7:9414:7e67:15e4]:5002/?action=stream"
+  ];
+
   ngAfterViewInit() {
     this.flipperCTX = this.flipperCanvas!.nativeElement.getContext('2d');
     this.joystickCTX = this.joystickCanvas!.nativeElement.getContext('2d');
@@ -51,5 +57,9 @@ export class DashboardComponent implements AfterViewInit {
     this.flippers.update();
     this.joystick.update();
     this.arm.update();
+  }
+
+  errorStream(streamID : number): void {
+    this.streams[streamID] = "assets/NoSignal.png"
   }
 }
