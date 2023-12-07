@@ -24,10 +24,10 @@ export class Flippers {
   }
 
   set(msg : any) : void {
-    this.flipperFL.angle = msg.front_left * 7;
-    this.flipperFR.angle = msg.front_right * 7;
-    this.flipperBL.angle = msg.back_left * 7;
-    this.flipperBR.angle = msg.back_right * 7;
+    this.flipperFL.angle = msg.front_left * -4;
+    this.flipperFR.angle = msg.front_right * -4;
+    this.flipperBL.angle = msg.back_left * -4;
+    this.flipperBR.angle = msg.back_right * -4;
   }
 }
 

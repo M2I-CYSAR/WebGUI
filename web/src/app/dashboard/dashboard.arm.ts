@@ -12,8 +12,8 @@ export class Arm {
   context : CanvasRenderingContext2D | undefined;
 
   shoulder_rotatation : number = 0;
-  shoulder_angle : number = 0;
-  elbow_angle : number = 0;
+  shoulder_angle : number = -70;
+  elbow_angle : number = 170;
   wrist_rotation : number = 0;
   wrist_angle : number = 0;
   claw_closure : number = 0;
@@ -32,7 +32,7 @@ export class Arm {
     var elbowX = baseX - humerusLength * Math.cos(overallShoulderAngle * Math.PI / 180);
     var elbowY = baseY - humerusLength * Math.sin(overallShoulderAngle * Math.PI / 180);
     var forearmLength = 35
-    var overallElbowAngle = this.elbow_angle + overallShoulderAngle;
+    var overallElbowAngle = this.elbow_angle;
     var wristX = elbowX - forearmLength * Math.cos(overallElbowAngle * Math.PI / 180);
     var wristY = elbowY - forearmLength * Math.sin(overallElbowAngle * Math.PI / 180);
     var clawLength = 20;
@@ -81,26 +81,11 @@ export class Arm {
 
   }
 
-  get() : void {
-    this.shoulder_rotatation += Math.random() * 20 - 10;
-    this.shoulder_angle += Math.random() * 20 - 10;
-    this.elbow_angle += Math.random() * 20 - 10;
-    this.wrist_rotation += Math.random() * 20 - 10;
-    this.wrist_angle += Math.random() * 20 - 10;
-    this.claw_closure += Math.random() * 0.2 - 0.1;
-
-    this.shoulder_rotatation = clamp(this.shoulder_rotatation, -135, 135);
-    this.shoulder_angle = clamp(this.shoulder_angle, -90, 90);
-    this.elbow_angle = clamp(this.elbow_angle, -135, 135);
-    this.wrist_angle = clamp(this.wrist_angle, -135, 135);
-    this.claw_closure = clamp(this.claw_closure, 0, 1);
-  }
-
   set(msg : any) : void {
-    this.shoulder_rotatation = msg.shoulder_rotatation * 135;
-    this.shoulder_angle = msg.shoulder_angle * 90;
-    this.elbow_angle = msg.elbow_angle * 135;
-    this.wrist_angle = msg.wrist_angle * 135;
+    this.shoulder_rotatation = msg.shoulder_rotatation * 360 / 50; // Range -180 to 180
+    this.shoulder_angle = msg.shoulder_angle * 160 / 40 - 80; // Range -80 to 80
+    this.elbow_angle = msg.elbow_angle * -90 / 30 + 170; // Range 170 to 80
+    this.wrist_angle = 0; // Rangle 30 to -30
     this.claw_closure = msg.claw_closing;
   }
 
